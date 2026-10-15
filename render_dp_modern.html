@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    width: 1080px;
+    height: 1080px;
+    background: #06050f;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .glow-main {
+    position: absolute;
+    width: 800px;
+    height: 800px;
+    top: 46%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.35) 0%, rgba(217, 70, 239, 0.18) 45%, transparent 70%);
+    filter: blur(50px);
+    pointer-events: none;
+  }
+
+  .grid-pattern {
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(rgba(196, 181, 253, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(196, 181, 253, 0.04) 1px, transparent 1px);
+    background-size: 44px 44px;
+    pointer-events: none;
+  }
+
+  .wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    margin-top: -20px;
+  }
+
+  .icon-card {
+    position: relative;
+    width: 440px;
+    height: 440px;
+    border-radius: 110px;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.02) 60%, rgba(217, 70, 239, 0.14) 100%);
+    padding: 3.5px;
+    box-shadow: 
+      0 0 95px -10px rgba(139, 92, 246, 0.75),
+      0 35px 80px -15px rgba(0, 0, 0, 0.9),
+      inset 0 1px 2px rgba(255, 255, 255, 0.5);
+  }
+
+  .icon-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 106px;
+    background: radial-gradient(circle at 30% 25%, #4c1d95 0%, #2e1065 50%, #110526 85%, #080214 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 
+      inset 0 20px 40px rgba(196, 181, 253, 0.22),
+      inset 0 -20px 40px rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .monogram-svg {
+    width: 250px;
+    height: 250px;
+    overflow: visible;
+    filter: drop-shadow(0 14px 22px rgba(0,0,0,0.6)) drop-shadow(0 0 35px rgba(196, 181, 253, 0.65));
+  }
+
+  .brand-lockup {
+    margin-top: 56px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .brand-title {
+    font-size: 54px;
+    font-weight: 900;
+    letter-spacing: 9px;
+    color: #ffffff;
+    text-transform: uppercase;
+    text-shadow: 0 4px 30px rgba(139, 92, 246, 0.65);
+  }
+
+  .brand-title .grad {
+    background: linear-gradient(110deg, #c4b5fd 0%, #e879f9 55%, #fde047 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .brand-tagline {
+    margin-top: 14px;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 12px;
+    color: #c4b5fd;
+    text-transform: uppercase;
+  }
+
+  .brand-badge {
+    margin-top: 24px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 26px;
+    border-radius: 99px;
+    background: rgba(139, 92, 246, 0.12);
+    border: 1px solid rgba(167, 139, 250, 0.3);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 3.5px;
+    color: #f5f3ff;
+  }
+  .brand-badge i {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #34d399;
+    box-shadow: 0 0 10px #34d399;
+  }
+</style>
+</head>
+<body>
+  <div class="glow-main"></div>
+  <div class="grid-pattern"></div>
+
+  <div class="wrapper">
+    <div class="icon-card">
+      <div class="icon-inner">
+        <svg class="monogram-svg" viewBox="0 0 100 100">
+          <circle cx="24" cy="20" r="8.5" fill="white"/>
+          <path d="M24 38V62a14 14 0 0 0 28 0V38l24 30V30" fill="none" stroke="white" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="brand-lockup">
+      <h1 class="brand-title">
+        <span>INSIGHT</span><span class="grad">NOVATECH</span>
+      </h1>
+      <div class="brand-tagline">
+        IDEAS · CODE · IMPACT
+      </div>
+      <div class="brand-badge">
+        <i></i> www.insightnovatech.com
+      </div>
+    </div>
+  </div>
+</body>
+</html>

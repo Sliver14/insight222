@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    width: 1920px;
+    height: 1080px;
+    background: #06050f;
+    font-family: 'Montserrat', sans-serif;
+    color: #ffffff;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 70px 100px;
+  }
+
+  .glow-top-left {
+    position: absolute;
+    width: 800px;
+    height: 800px;
+    left: -200px;
+    top: -200px;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.28) 0%, transparent 65%);
+    filter: blur(60px);
+    pointer-events: none;
+  }
+  .glow-center-right {
+    position: absolute;
+    width: 1000px;
+    height: 900px;
+    right: -150px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: radial-gradient(circle, rgba(217, 70, 239, 0.26) 0%, rgba(139, 92, 246, 0.2) 45%, transparent 70%);
+    filter: blur(60px);
+    pointer-events: none;
+  }
+
+  .grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(rgba(196, 181, 253, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(196, 181, 253, 0.035) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+  }
+
+  /* Top Navigation Bar */
+  .top-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 10;
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .nav-logo-badge {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #7c3aed, #4c1d95 60%, #1e0845 100%);
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 25px rgba(139, 92, 246, 0.5);
+  }
+  .nav-logo-badge svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  .nav-title {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 2px;
+  }
+  .nav-title span {
+    background: linear-gradient(100deg, #c4b5fd, #f472b6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .nav-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 20px;
+    border-radius: 99px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(196, 181, 253, 0.22);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #c4b5fd;
+    text-transform: uppercase;
+  }
+  .nav-tag i {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #34d399;
+    box-shadow: 0 0 8px #34d399;
+  }
+
+  /* Center Main Area */
+  .center-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+    position: relative;
+    z-index: 10;
+    margin: 40px 0;
+  }
+
+  .hero-left {
+    max-width: 900px;
+  }
+
+  .hero-h1 {
+    font-size: 76px;
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -2.5px;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+  }
+
+  .hero-h1 .grad {
+    background: linear-gradient(100deg, #a78bfa 0%, #d946ef 55%, #fbbf24 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+  }
+
+  .hero-p {
+    font-size: 21px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #cbd5e1;
+    margin-bottom: 34px;
+    max-width: 780px;
+  }
+
+  .service-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 40px;
+  }
+
+  .serv-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 22px;
+    border-radius: 99px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(196, 181, 253, 0.2);
+    font-size: 15px;
+    font-weight: 600;
+    color: #f8fafc;
+    backdrop-filter: blur(12px);
+  }
+  .serv-pill span {
+    color: #d946ef;
+    font-size: 16px;
+  }
+
+  .cta-group {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 36px;
+    border-radius: 99px;
+    background: linear-gradient(100deg, #7c3aed, #c026d3);
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    box-shadow: 0 14px 44px -8px rgba(168, 85, 247, 0.85);
+  }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 32px;
+    border-radius: 99px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(196, 181, 253, 0.3);
+    color: #e2e8f0;
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  /* Right Showcase UI Elements */
+  .hero-right {
+    position: relative;
+    width: 660px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .main-card {
+    width: 580px;
+    border-radius: 36px;
+    background: rgba(14, 10, 40, 0.72);
+    border: 1.5px solid rgba(196, 181, 253, 0.25);
+    backdrop-filter: blur(28px) saturate(1.5);
+    box-shadow: 
+      0 40px 100px -20px rgba(0, 0, 0, 0.85),
+      0 0 80px -10px rgba(139, 92, 246, 0.4),
+      inset 0 1px 2px rgba(255, 255, 255, 0.4);
+    padding: 38px 42px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .card-top {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(196, 181, 253, 0.14);
+  }
+
+  .large-badge {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #7c3aed, #4c1d95 60%, #1e0845 100%);
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    box-shadow: 0 10px 30px rgba(124, 58, 237, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .large-badge svg {
+    width: 48px;
+    height: 48px;
+  }
+
+  .card-top-info h2 {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 2px;
+  }
+  .card-top-info h2 span {
+    background: linear-gradient(100deg, #c4b5fd, #f472b6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .card-top-info p {
+    font-size: 13px;
+    letter-spacing: 4px;
+    color: #a7a2cf;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-top: 4px;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .stat-card {
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid rgba(196, 181, 253, 0.14);
+    border-radius: 20px;
+    padding: 20px 22px;
+  }
+  .stat-num {
+    font-size: 32px;
+    font-weight: 900;
+    color: #ffffff;
+  }
+  .stat-num.teal { color: #34d399; }
+  .stat-num.pink { color: #f472b6; }
+  .stat-label {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-top: 6px;
+  }
+
+  .live-status {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(139, 92, 246, 0.12);
+    border: 1px solid rgba(167, 139, 250, 0.28);
+    border-radius: 16px;
+    padding: 14px 22px;
+  }
+  .live-status-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .live-status-left i {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #34d399;
+    box-shadow: 0 0 10px #34d399;
+  }
+  .live-status-right {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: #fbbf24;
+    background: rgba(251, 191, 36, 0.12);
+    padding: 4px 12px;
+    border-radius: 8px;
+  }
+
+  /* Bottom Bar */
+  .bottom-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 24px;
+    border-top: 1px solid rgba(196, 181, 253, 0.15);
+    position: relative;
+    z-index: 10;
+  }
+
+  .bottom-contacts {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #e2e8f0;
+  }
+  .contact-item span { color: #a78bfa; font-size: 18px; }
+
+  .bottom-motto {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: #94a3b8;
+    text-transform: uppercase;
+  }
+  .bottom-motto b { color: #fbbf24; }
+</style>
+</head>
+<body>
+  <div class="glow-top-left"></div>
+  <div class="glow-center-right"></div>
+  <div class="grid-bg"></div>
+
+  <!-- Top Nav -->
+  <div class="top-nav">
+    <div class="nav-brand">
+      <div class="nav-logo-badge">
+        <svg viewBox="0 0 100 100">
+          <circle cx="24" cy="20" r="8" fill="white"/>
+          <path d="M24 38V62a14 14 0 0 0 28 0V38l24 30V30" fill="none" stroke="white" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="nav-title">INSIGHT<span>NOVATECH</span></div>
+    </div>
+    <div class="nav-tag">
+      <i></i> Global Engineering & Design Studio
+    </div>
+  </div>
+
+  <!-- Center Content -->
+  <div class="center-content">
+    <div class="hero-left">
+      <h1 class="hero-h1">
+        We Build Your<br>
+        <span class="grad">Vision Into Reality</span>
+      </h1>
+      <p class="hero-p">
+        We design, engineer, and deploy high-converting websites, high-performance mobile apps, and autonomous AI systems built to scale.
+      </p>
+
+      <div class="service-row">
+        <div class="serv-pill"><span>✦</span> Full-Stack Websites</div>
+        <div class="serv-pill"><span>✦</span> iOS & Android Apps</div>
+        <div class="serv-pill"><span>✦</span> AI & Workflow Automation</div>
+        <div class="serv-pill"><span>✦</span> Custom SaaS Solutions</div>
+      </div>
+
+      <div class="cta-group">
+        <div class="btn-primary">
+          <span>Get Started Today</span> ➔
+        </div>
+        <div class="btn-outline">
+          <span>08135971304</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="main-card">
+        <div class="card-top">
+          <div class="large-badge">
+            <svg viewBox="0 0 100 100">
+              <circle cx="24" cy="20" r="8" fill="white"/>
+              <path d="M24 38V62a14 14 0 0 0 28 0V38l24 30V30" fill="none" stroke="white" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="card-top-info">
+            <h2>INSIGHT<span>NOVATECH</span></h2>
+            <p>Ideas · Code · Impact</p>
+          </div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-num teal">100%</div>
+            <div class="stat-label">Production Delivery</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num pink">99.9%</div>
+            <div class="stat-label">Security & Uptime</div>
+          </div>
+        </div>
+
+        <div class="live-status">
+          <div class="live-status-left">
+            <i></i> Modern Software Architecture
+          </div>
+          <div class="live-status-right">ACTIVE & READY</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="bottom-bar">
+    <div class="bottom-contacts">
+      <div class="contact-item">
+        <span>📞</span> 08135971304
+      </div>
+      <div class="contact-item">
+        <span>🌐</span> www.insightnovatech.com
+      </div>
+      <div class="contact-item">
+        <span>📍</span> Lagos, Nigeria
+      </div>
+    </div>
+    <div class="bottom-motto">
+      ENGINEERING THE <b>FUTURE</b> OF DIGITAL
+    </div>
+  </div>
+</body>
+</html>
