@@ -632,7 +632,7 @@ const projects=[
    name:'GymPilotPro',
    type:'AI-Powered Gym Management SaaS',
    tags:['SaaS','AI','Next.js','PostgreSQL'],
-   img:'gympilotpro.png',
+   img:'gympilotpro.webp',
    live:'https://gympilotpro.com',
    github:'https://github.com/Sliver14/gympilotpro',
    desc:'A comprehensive AI-driven ecosystem for gym owners. Featuring automated membership management, real-time analytics, AI-powered workout recommendations, and seamless trainer-client communication.',
@@ -648,7 +648,7 @@ const projects=[
    name:'Reno',
    type:'Cross-Platform FinTech & Crypto App',
    tags:['FinTech','React Native','Expo','Crypto','TypeScript'],
-   img:'reno-flyer.png',
+   img:'reno-flyer.webp',
    live:'https://drive.google.com/file/d/1byRoGDm47X0Srv4QjrFLX_34sRhGobHK/view?usp=sharing',
    github:'https://github.com/Sliver14/Reno',
    desc:'A modern FinTech mobile application bridging traditional banking with the crypto economy. Built with React Native and Expo, offering a unified platform for managing fiat (Naira) and digital assets.',
@@ -664,7 +664,7 @@ const projects=[
    name:'Network for Medical Missions',
    type:'Global Healthcare Outreach Platform',
    tags:['Healthcare','Next.js','Firebase','Global Outreach'],
-   img:'medical-missions.png',
+   img:'medical-missions.webp',
    live:'https://networkformedicalmissions.org',
    github:'https://github.com/Sliver14/networkformedicalmissions',
    desc:'A platform dedicated to coordinating and supporting medical missions globally, connecting volunteer healthcare professionals with clinics and communities worldwide.',
@@ -680,7 +680,7 @@ const projects=[
    name:'Esther Odejobi',
    type:'Executive Brand & Speaking Portfolio',
    tags:['Personal Brand','Frontend','React','Animations'],
-   img:'esther.png',
+   img:'esther.webp',
    live:'https://www.estherodejobi.com',
    github:'https://github.com/Sliver14/Esther-Odejobi',
    desc:'A high-converting personal brand, speaking portfolio and authority platform for author, speaker, and executive leader Esther Odejobi.',
@@ -696,7 +696,7 @@ const projects=[
    name:'Cecilia Abua',
    type:'Real Estate Brokerage Blueprint',
    tags:['Real Estate','Next.js','TailwindCSS','Web Design'],
-   img:'cecilia-abua.png',
+   img:'cecilia-abua.webp',
    live:'https://www.ceciliaabua.com',
    github:'https://github.com/Sliver14/cecilibua',
    desc:'Personal portfolio and high-converting commercial showcase for Cecilia Abua — providing investors with tailored real estate investment guidance and blueprint resources.',
@@ -721,7 +721,7 @@ document.getElementById('mq').innerHTML=[...marquee,...marquee,...marquee,...mar
 const stage=document.getElementById('stage');
 stage.innerHTML=projects.map((p,i)=>{
   const domain=p.live?p.live.replace(/^https?:\/\//,'').replace(/^www\./,'').split('/')[0]:p.name.toLowerCase()+'.app';
-  return `<div class="sl" data-i="${i}"><div class="pc"><div class="art"><div class="art-bar"><span class="art-dots"><i></i><i></i><i></i></span><span class="art-url">${domain}</span><span style="font-size:10px;font-weight:700;letter-spacing:.5px;color:var(--violet)">0${i+1}/0${projects.length}</span></div><div class="art-screen"><img src="${p.img}" alt="${p.name}" loading="lazy"><div class="art-overlay"></div><span class="art-tag">${p.tags[0]}</span></div></div><div class="pl"><div class="pl-head"><div><h4>${p.name}</h4><div class="pl-type">${p.type}</div></div></div><p class="pl-desc">${p.desc}</p><div class="pc-tags">${p.tags.slice(0,3).map(t=>`<span>${t}</span>`).join('')}</div><div class="pc-foot"><span class="pc-cta">Explore Architecture</span><span class="view-arr">↗</span></div></div></div></div>`;
+  return `<div class="sl" data-i="${i}"><div class="pc"><div class="art"><div class="art-bar"><span class="art-dots"><i></i><i></i><i></i></span><span class="art-url">${domain}</span><span style="font-size:10px;font-weight:700;letter-spacing:.5px;color:var(--violet)">0${i+1}/0${projects.length}</span></div><div class="art-screen"><img src="${p.img}" alt="${p.name}" ${i===0?'fetchpriority="high"':'loading="lazy"'} onerror="this.onerror=null;this.src=this.src.replace('.webp','.png')"><div class="art-overlay"></div><span class="art-tag">${p.tags[0]}</span></div></div><div class="pl"><div class="pl-head"><div><h4>${p.name}</h4><div class="pl-type">${p.type}</div></div></div><p class="pl-desc">${p.desc}</p><div class="pc-tags">${p.tags.slice(0,3).map(t=>`<span>${t}</span>`).join('')}</div><div class="pc-foot"><span class="pc-cta">Explore Architecture</span><span class="view-arr">↗</span></div></div></div></div>`;
 }).join('');
 document.getElementById('pd').innerHTML=projects.map((_,i)=>`<i data-i="${i}"></i>`).join('');
 
@@ -805,7 +805,7 @@ function openP(p){
     <span class="eb" style="margin-bottom:6px">${p.type}</span>
     <h3 style="margin-top:4px">${p.name}</h3>
     <div class="mb-img">
-      <img src="${p.img}" alt="${p.name}">
+      <img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('.webp','.png')">
     </div>
     <p style="font-size:15px;line-height:1.6;color:var(--muted)">${p.desc}</p>
     <div style="margin:18px 0 8px;font-weight:700;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--ink)">Key Architectural Features</div>
